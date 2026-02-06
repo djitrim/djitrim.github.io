@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DJ ITRIM | Fort Lauderdale DJ</title>
+<title>ITRIM | Fort Lauderdale DJ</title>
+
+<!-- Luxury Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* RESET */
@@ -25,9 +28,9 @@ body { font-family: Arial, Helvetica, sans-serif; background: #000; color: #fff;
   animation: glow 2.5s infinite ease-in-out;
 }
 @keyframes glow {
-  0% { text-shadow: 0 0 10px #00eaff; }
-  50% { text-shadow: 0 0 25px #00eaff; }
-  100% { text-shadow: 0 0 10px #00eaff; }
+  0% { text-shadow: 0 0 10px #ffd700; }
+  50% { text-shadow: 0 0 25px #ffd700; }
+  100% { text-shadow: 0 0 10px #ffd700; }
 }
 
 /* NAV */
@@ -58,13 +61,29 @@ header a {
   text-transform: uppercase;
   transition: 0.3s;
 }
-header a:hover { color: #00eaff; transform: scale(1.1); }
+header a:hover { color: #ffd700; transform: scale(1.1); }
 
+/* LUXURY LOGO */
 .logo {
-  font-size: 1.4rem;
-  font-weight: bold;
-  letter-spacing: 3px;
-  animation: glow 3s infinite ease-in-out;
+  font-family: 'Cinzel', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 10px;
+  color: #f5f5f5;
+  text-transform: uppercase;
+  animation: logoFade 2s ease forwards, logoGlow 4s ease-in-out infinite;
+  cursor: default;
+}
+
+@keyframes logoFade {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logoGlow {
+  0% { text-shadow: 0 0 10px rgba(255,215,0,0.4); }
+  50% { text-shadow: 0 0 25px rgba(255,215,0,0.9); }
+  100% { text-shadow: 0 0 10px rgba(255,215,0,0.4); }
 }
 
 /* HERO */
@@ -105,10 +124,12 @@ header a:hover { color: #00eaff; transform: scale(1.1); }
 }
 
 .hero h1 {
+  font-family: 'Cinzel', serif;
   font-size: 4rem;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   text-transform: uppercase;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 .hero p {
@@ -120,8 +141,8 @@ header a:hover { color: #00eaff; transform: scale(1.1); }
 .btn {
   padding: 14px 32px;
   border-radius: 50px;
-  border: 2px solid #00eaff;
-  color: #00eaff;
+  border: 2px solid #ffd700;
+  color: #ffd700;
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 2px;
@@ -130,7 +151,7 @@ header a:hover { color: #00eaff; transform: scale(1.1); }
   transition: 0.3s;
 }
 .btn:hover {
-  background: #00eaff;
+  background: #ffd700;
   color: #000;
   transform: scale(1.1);
 }
@@ -144,6 +165,7 @@ section {
 }
 
 section h2 {
+  font-family: 'Cinzel', serif;
   font-size: 2.6rem;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -162,7 +184,7 @@ section p.section-intro {
 .divider {
   width: 120px;
   height: 4px;
-  background: #00eaff;
+  background: #ffd700;
   margin: 20px auto 60px;
   animation: expand 2s ease forwards;
 }
@@ -186,12 +208,12 @@ section p.section-intro {
   transition: 0.3s;
 }
 .event:hover {
-  background: rgba(0,234,255,0.1);
+  background: rgba(255,215,0,0.1);
   transform: translateX(10px);
 }
 
 .event span {
-  color: #00eaff;
+  color: #ffd700;
   font-weight: bold;
 }
 
@@ -211,7 +233,7 @@ section p.section-intro {
 }
 .music-item:hover {
   transform: scale(1.07);
-  box-shadow: 0 0 25px #00eaff;
+  box-shadow: 0 0 25px #ffd700;
 }
 
 .music-item img {
@@ -226,14 +248,14 @@ section p.section-intro {
 }
 
 .contact a {
-  color: #00eaff;
+  color: #ffd700;
   text-decoration: none;
   font-size: 1.2rem;
   transition: 0.3s;
 }
 .contact a:hover {
   color: #fff;
-  text-shadow: 0 0 15px #00eaff;
+  text-shadow: 0 0 15px #ffd700;
 }
 
 /* FOOTER */
@@ -251,7 +273,7 @@ footer {
 <body>
 
 <header>
-  <div class="logo">DJ ITRIM</div>
+  <div class="logo">ITRIM</div>
   <nav>
     <a href="#events">Events</a>
     <a href="#music">Music</a>
@@ -262,7 +284,7 @@ footer {
 
 <section class="hero">
   <div class="hero-content">
-    <h1 class="glow-pulse">DJ ITRIM</h1>
+    <h1 class="glow-pulse">ITRIM</h1>
     <p>Fort Lauderdale’s Premier DJ — Clubs, Festivals, Private Events</p>
     <a href="#contact" class="btn">Book Now</a>
   </div>
@@ -300,7 +322,7 @@ footer {
 </section>
 
 <section id="about">
-  <h2 class="fade-up">About DJ ITRIM</h2>
+  <h2 class="fade-up">About ITRIM</h2>
   <div class="divider"></div>
   <p class="section-intro fade-up">
     High‑energy sets, seamless transitions, and a signature South Florida sound.
@@ -311,11 +333,11 @@ footer {
   <h2 class="fade-up">Booking</h2>
   <div class="divider"></div>
   <p class="section-intro fade-up">For events, clubs, and private bookings</p>
-  <p class="fade-up"><a href="mailto:booking@djitrim.com">booking@djitrim.com</a></p>
+  <p class="fade-up"><a href="mailto:booking@itrim.com">booking@itrim.com</a></p>
 </section>
 
 <footer>
-  © <span id="year"></span> DJ ITRIM — All Rights Reserved
+  © <span id="year"></span> ITRIM — All Rights Reserved
 </footer>
 
 <script>
@@ -339,5 +361,3 @@ reveal();
 
 </body>
 </html>
-
-
