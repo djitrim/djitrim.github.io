@@ -415,7 +415,7 @@ function reveal() {
 window.addEventListener('scroll', reveal);
 reveal();
 
-/* PARAMETRIC "VIDEO" HERO ANIMATION */
+/* ALIEN HEAT DIGITAL MIXER PARAMETRIC ANIMATION */
 const canvas = document.getElementById("parametricCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -428,39 +428,53 @@ window.addEventListener("resize", resizeCanvas);
 
 let t = 0;
 
-function animateParametric() {
+function animateAlienHeat() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = "rgba(255, 215, 0, 0.8)";
-  ctx.shadowBlur = 20;
-  ctx.shadowColor = "#ffd700";
+  // Background haze
+  ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.beginPath();
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
 
-  for (let i = 0; i < 2000; i++) {
-    let a = 2, b = 3, c = 4;
-    let u = i / 200;
+  // Multi-layer alien waves
+  for (let layer = 0; layer < 4; layer++) {
+    let radius = 180 + layer * 40;
 
-    let x = canvas.width / 2 +
-      250 * Math.sin(a * u + t) *
-      Math.cos(c * u);
+    ctx.beginPath();
+    ctx.lineWidth = 1.8 + layer * 0.6;
+    ctx.strokeStyle = `rgba(255, 215, 0, ${0.35 + layer * 0.15})`;
+    ctx.shadowBlur = 25 + layer * 10;
+    ctx.shadowColor = "#ffd700";
 
-    let y = canvas.height / 2 +
-      250 * Math.sin(b * u + t) *
-      Math.sin(c * u);
+    for (let i = 0; i < 2000; i++) {
+      let u = i / 200;
 
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
+      let x =
+        centerX +
+        radius *
+          Math.sin(2 * u + t * 0.9) *
+          Math.cos(3 * u + t * 0.4 + layer);
+
+      let y =
+        centerY +
+        radius *
+          Math.sin(4 * u + t * 0.6 + layer) *
+          Math.sin(2 * u + t * 0.3);
+
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+
+    ctx.stroke();
   }
 
-  ctx.stroke();
-  t += 0.01;
-
-  requestAnimationFrame(animateParametric);
+  t += 0.008;
+  requestAnimationFrame(animateAlienHeat);
 }
 
-animateParametric();
+animateAlienHeat();
 </script>
 
 </body>
