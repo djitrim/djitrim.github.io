@@ -1,182 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DJ ITRIM | Best Fort Lauderdale DJ</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DJ ITRIM | Fort Lauderdale DJ</title>
 
-  <style>
-    /* RESET */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, Helvetica, sans-serif; background: #000; color: #fff; }
+<style>
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; background: #000; color: #fff; overflow-x: hidden; }
 
-    /* NAV */
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(6px);
-    }
-    header a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 25px;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    header a:hover { color: #00eaff; }
+/* GLOBAL ANIMATIONS */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .logo {
-      font-size: 1.4rem;
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
+.glow-pulse {
+  animation: glow 2.5s infinite ease-in-out;
+}
+@keyframes glow {
+  0% { text-shadow: 0 0 10px #00eaff; }
+  50% { text-shadow: 0 0 25px #00eaff; }
+  100% { text-shadow: 0 0 10px #00eaff; }
+}
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      width: 100%;
-      background: url('your-hero-image.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-    }
+/* NAV */
+header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  animation: fadeNav 1.5s ease forwards;
+}
+@keyframes fadeNav {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.45);
-    }
+header a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+header a:hover { color: #00eaff; transform: scale(1.1); }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-    }
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  animation: glow 3s infinite ease-in-out;
+}
 
-    .hero h1 {
-      font-size: 4rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  width: 100%;
+  background: url('your-hero-image.jpg') center/cover no-repeat fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  animation: fadeHero 2s ease forwards;
+}
+@keyframes fadeHero {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-    .hero p {
-      font-size: 1.2rem;
-      color: #ddd;
-      margin-bottom: 30px;
-    }
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+}
 
-    .btn {
-      padding: 14px 32px;
-      border-radius: 50px;
-      border: 2px solid #00eaff;
-      color: #00eaff;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 2px;
-      cursor: pointer;
-      background: transparent;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #00eaff;
-      color: #000;
-    }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  animation: slideUp 1.5s ease forwards;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    /* SECTIONS */
-    section {
-      padding: 100px 40px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.hero h1 {
+  font-size: 4rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
 
-    section h2 {
-      font-size: 2.6rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+.hero p {
+  font-size: 1.2rem;
+  color: #ddd;
+  margin-bottom: 30px;
+}
 
-    section p.section-intro {
-      text-align: center;
-      color: #bbb;
-      margin-bottom: 50px;
-      font-size: 1.1rem;
-    }
+.btn {
+  padding: 14px 32px;
+  border-radius: 50px;
+  border: 2px solid #00eaff;
+  color: #00eaff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  background: transparent;
+  transition: 0.3s;
+}
+.btn:hover {
+  background: #00eaff;
+  color: #000;
+  transform: scale(1.1);
+}
 
-    /* EVENTS */
-    .events {
-      display: grid;
-      gap: 25px;
-    }
+/* SECTIONS */
+section {
+  padding: 120px 40px;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
 
-    .event {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 25px;
-      border-bottom: 1px solid #333;
-      font-size: 1.1rem;
-    }
+section h2 {
+  font-size: 2.6rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-    .event span {
-      color: #00eaff;
-      font-weight: bold;
-    }
+section p.section-intro {
+  text-align: center;
+  color: #bbb;
+  margin-bottom: 50px;
+  font-size: 1.1rem;
+}
 
-    /* MUSIC GRID */
-    .music-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
+/* ANIMATED DIVIDER */
+.divider {
+  width: 120px;
+  height: 4px;
+  background: #00eaff;
+  margin: 20px auto 60px;
+  animation: expand 2s ease forwards;
+}
+@keyframes expand {
+  from { width: 0; opacity: 0; }
+  to { width: 120px; opacity: 1; }
+}
 
-    .music-item {
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-    }
+/* EVENTS */
+.events {
+  display: grid;
+  gap: 25px;
+}
 
-    .music-item img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+.event {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 25px;
+  border-bottom: 1px solid #333;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+.event:hover {
+  background: rgba(0,234,255,0.1);
+  transform: translateX(10px);
+}
 
-    /* CONTACT */
-    .contact {
-      text-align: center;
-    }
+.event span {
+  color: #00eaff;
+  font-weight: bold;
+}
 
-    .contact a {
-      color: #00eaff;
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
+/* MUSIC GRID */
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
 
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #666;
-      font-size: 0.9rem;
-      border-top: 1px solid #222;
-      margin-top: 60px;
-    }
-  </style>
+.music-item {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.4s;
+}
+.music-item:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 25px #00eaff;
+}
+
+.music-item img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* CONTACT */
+.contact {
+  text-align: center;
+}
+
+.contact a {
+  color: #00eaff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+.contact a:hover {
+  color: #fff;
+  text-shadow: 0 0 15px #00eaff;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 0.9rem;
+  border-top: 1px solid #222;
+  margin-top: 60px;
+}
+</style>
 </head>
 
 <body>
@@ -191,70 +260,58 @@
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <h1>DJ ITRIM</h1>
+    <h1 class="glow-pulse">DJ ITRIM</h1>
     <p>Fort Lauderdale’s Premier DJ — Clubs, Festivals, Private Events</p>
     <a href="#contact" class="btn">Book Now</a>
   </div>
 </section>
 
-<!-- EVENTS -->
 <section id="events">
-  <h2>Upcoming Events</h2>
-  <p class="section-intro">Catch DJ ITRIM live across South Florida</p>
+  <h2 class="fade-up">Upcoming Events</h2>
+  <div class="divider"></div>
 
   <div class="events">
-    <div class="event">
-      <div>Feb 14 — Las Olas Rooftop</div>
-      <span>Fort Lauderdale</span>
-    </div>
-    <div class="event">
-      <div>Feb 22 — Wynwood Night Market</div>
-      <span>Miami</span>
-    </div>
-    <div class="event">
-      <div>Mar 3 — Yacht Party</div>
-      <span>Hollywood Beach</span>
-    </div>
+    <div class="event fade-up"><div>Feb 14 — Las Olas Rooftop</div><span>Fort Lauderdale</span></div>
+    <div class="event fade-up"><div>Feb 22 — Wynwood Night Market</div><span>Miami</span></div>
+    <div class="event fade-up"><div>Mar 3 — Yacht Party</div><span>Hollywood Beach</span></div>
   </div>
 </section>
 
-<!-- MUSIC -->
 <section id="music">
-  <h2>Mixes & Releases</h2>
-  <p class="section-intro">Latest sets, remixes, and exclusive drops</p>
+  <h2 class="fade-up">Mixes & Releases</h2>
+  <div class="divider"></div>
 
   <div class="music-grid">
-    <div class="music-item">
+    <div class="music-item fade-up">
       <img src="cover1.jpg" alt="Mix Cover">
       <h3>Sunset Vibes Vol. 1</h3>
     </div>
-    <div class="music-item">
+    <div class="music-item fade-up">
       <img src="cover2.jpg" alt="Mix Cover">
       <h3>Late Night Energy</h3>
     </div>
-    <div class="music-item">
+    <div class="music-item fade-up">
       <img src="cover3.jpg" alt="Mix Cover">
       <h3>Miami Afterhours</h3>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
-  <h2>About DJ ITRIM</h2>
-  <p class="section-intro">
+  <h2 class="fade-up">About DJ ITRIM</h2>
+  <div class="divider"></div>
+  <p class="section-intro fade-up">
     High‑energy sets, seamless transitions, and a signature South Florida sound.
   </p>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="contact">
-  <h2>Booking</h2>
-  <p class="section-intro">For events, clubs, and private bookings</p>
-  <p><a href="mailto:booking@djitrim.com">booking@djitrim.com</a></p>
+  <h2 class="fade-up">Booking</h2>
+  <div class="divider"></div>
+  <p class="section-intro fade-up">For events, clubs, and private bookings</p>
+  <p class="fade-up"><a href="mailto:booking@djitrim.com">booking@djitrim.com</a></p>
 </section>
 
 <footer>
@@ -262,11 +319,25 @@
 </footer>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* SCROLL REVEAL */
+const elements = document.querySelectorAll('.fade-up');
+
+function reveal() {
+  elements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) {
+      el.classList.add('visible');
+    }
+  });
+}
+
+window.addEventListener('scroll', reveal);
+reveal();
 </script>
 
 </body>
 </html>
 
 
- 
