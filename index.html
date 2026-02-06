@@ -3,446 +3,270 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Best Fort Lauderdale DJ | DJ ITRIM</title>
-  <meta name="description" content="DJ ITRIM – the best Fort Lauderdale DJ for weddings, clubs, private events, and corporate parties." />
+  <title>DJ ITRIM | Best Fort Lauderdale DJ</title>
+
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #000; color: #fff; }
 
-    body {
-      background: #05060a;
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
-
+    /* NAV */
     header {
-      background: linear-gradient(135deg, #111827, #1f2937);
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      z-index: 1000;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
     }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    header a:hover { color: #00eaff; }
 
     .logo {
       font-size: 1.4rem;
       font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #38bdf8;
-    }
-
-    nav a {
-      color: #e5e7eb;
-      margin-left: 20px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-    }
-
-    nav a:hover {
-      color: #38bdf8;
-    }
-
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
-      text-align: center;
-    }
-
-    .hero-content {
-      max-width: 800px;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 15px;
-      text-transform: uppercase;
       letter-spacing: 3px;
     }
 
-    .hero h1 span {
-      color: #38bdf8;
+    /* HERO */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      background: url('your-hero-image.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.45);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
     .hero p {
-      font-size: 1.05rem;
-      color: #d1d5db;
-      margin-bottom: 25px;
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+      font-size: 1.2rem;
+      color: #ddd;
+      margin-bottom: 30px;
     }
 
     .btn {
-      padding: 12px 26px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      font-size: 0.95rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: 2px solid #00eaff;
+      color: #00eaff;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary {
-      background: #38bdf8;
-      color: #020617;
-      font-weight: bold;
-    }
-
-    .btn-primary:hover {
-      background: #0ea5e9;
-    }
-
-    .btn-outline {
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      cursor: pointer;
       background: transparent;
-      color: #e5e7eb;
-      border-color: #4b5563;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #00eaff;
+      color: #000;
     }
 
-    .btn-outline:hover {
-      border-color: #38bdf8;
-      color: #38bdf8;
-    }
-
+    /* SECTIONS */
     section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: 0 auto;
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     section h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 2.6rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
       text-align: center;
     }
 
     section p.section-intro {
       text-align: center;
-      color: #9ca3af;
-      margin-bottom: 35px;
-      font-size: 0.98rem;
+      color: #bbb;
+      margin-bottom: 50px;
+      font-size: 1.1rem;
     }
 
-    .grid {
+    /* EVENTS */
+    .events {
       display: grid;
       gap: 25px;
     }
 
-    .grid-3 {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    .event {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 25px;
+      border-bottom: 1px solid #333;
+      font-size: 1.1rem;
     }
 
-    .card {
-      background: #020617;
-      border-radius: 12px;
-      padding: 22px;
-      border: 1px solid #111827;
+    .event span {
+      color: #00eaff;
+      font-weight: bold;
     }
 
-    .card h3 {
-      font-size: 1.15rem;
-      margin-bottom: 8px;
-      color: #e5e7eb;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: #9ca3af;
-    }
-
-    .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #111827;
-      color: #9ca3af;
-      margin-bottom: 10px;
-    }
-
-    .highlights {
+    /* MUSIC GRID */
+    .music-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      align-items: center;
+      gap: 30px;
     }
 
-    .highlights-text ul {
-      list-style: none;
-    }
-
-    .highlights-text li {
-      margin-bottom: 10px;
-      font-size: 0.96rem;
-      color: #d1d5db;
-    }
-
-    .highlights-text li::before {
-      content: "•";
-      color: #38bdf8;
-      margin-right: 8px;
-    }
-
-    .highlights-box {
-      background: radial-gradient(circle at top left, #38bdf8 0, #020617 55%);
-      border-radius: 16px;
-      padding: 24px;
-      border: 1px solid #0f172a;
-    }
-
-    .highlights-box h3 {
-      margin-bottom: 10px;
-    }
-
-    .highlights-box p {
-      color: #e5e7eb;
-      font-size: 0.96rem;
-    }
-
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
-
-    .testimonial {
-      background: #020617;
-      border-radius: 12px;
+    .music-item {
+      background: #111;
       padding: 20px;
-      border: 1px solid #111827;
-      font-size: 0.95rem;
-      color: #d1d5db;
+      border-radius: 10px;
+      text-align: center;
     }
 
-    .testimonial strong {
-      display: block;
-      margin-top: 10px;
-      color: #9ca3af;
-      font-size: 0.9rem;
+    .music-item img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
     }
 
+    /* CONTACT */
     .contact {
       text-align: center;
     }
 
-    .contact-info {
-      margin-top: 20px;
-      font-size: 0.98rem;
-      color: #d1d5db;
-    }
-
-    .contact-info a {
-      color: #38bdf8;
+    .contact a {
+      color: #00eaff;
       text-decoration: none;
-    }
-
-    .contact-info a:hover {
-      text-decoration: underline;
+      font-size: 1.2rem;
     }
 
     footer {
       text-align: center;
-      padding: 25px 10px;
-      font-size: 0.8rem;
-      color: #6b7280;
-      border-top: 1px solid #111827;
-      margin-top: 40px;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 15px 20px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .hero h1 {
-        font-size: 2.1rem;
-      }
-
-      .hero p {
-        font-size: 0.98rem;
-      }
+      padding: 40px 20px;
+      color: #666;
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+      margin-top: 60px;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">DJ ITRIM</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#highlights">Why ITRIM</a>
-      <a href="#testimonials">Reviews</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1><span>Best Fort Lauderdale DJ</span><br />DJ ITRIM</h1>
-      <p>
-        High–energy mixes, seamless transitions, and a packed dance floor—every single time.  
-        From beachfront weddings to downtown clubs, DJ ITRIM brings the Fort Lauderdale vibe to life.
-      </p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Book DJ ITRIM</a>
-        <a href="#services" class="btn btn-outline">View DJ Services</a>
-      </div>
+<header>
+  <div class="logo">DJ ITRIM</div>
+  <nav>
+    <a href="#events">Events</a>
+    <a href="#music">Music</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>DJ ITRIM</h1>
+    <p>Fort Lauderdale’s Premier DJ — Clubs, Festivals, Private Events</p>
+    <a href="#contact" class="btn">Book Now</a>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <h2>Upcoming Events</h2>
+  <p class="section-intro">Catch DJ ITRIM live across South Florida</p>
+
+  <div class="events">
+    <div class="event">
+      <div>Feb 14 — Las Olas Rooftop</div>
+      <span>Fort Lauderdale</span>
     </div>
-  </section>
-
-  <section id="about">
-    <h2>About DJ ITRIM</h2>
-    <p class="section-intro">
-      A Fort Lauderdale DJ with a passion for reading the crowd, blending genres, and creating unforgettable nights.
-    </p>
-    <div class="grid grid-3">
-      <div class="card">
-        <span class="badge">Experience</span>
-        <h3>Years in the scene</h3>
-        <p>
-          DJ ITRIM has performed at clubs, lounges, yachts, and private venues across South Florida, 
-          building a reputation as one of the most reliable and versatile DJs in Fort Lauderdale.
-        </p>
-      </div>
-      <div class="card">
-        <span class="badge">Style</span>
-        <h3>Custom–curated sets</h3>
-        <p>
-          From house, EDM, and hip–hop to Latin, throwbacks, and Top 40, every set is tailored to your crowd, 
-          your energy, and your event.
-        </p>
-      </div>
-      <div class="card">
-        <span class="badge">Professional</span>
-        <h3>Sound & lighting ready</h3>
-        <p>
-          Professional sound system, wireless microphones, and dynamic lighting options available to turn any space 
-          into a full experience.
-        </p>
-      </div>
+    <div class="event">
+      <div>Feb 22 — Wynwood Night Market</div>
+      <span>Miami</span>
     </div>
-  </section>
-
-  <section id="services">
-    <h2>DJ services in Fort Lauderdale</h2>
-    <p class="section-intro">
-      Whether it’s an intimate gathering or a full–scale production, DJ ITRIM has a package that fits.
-    </p>
-    <div class="grid grid-3">
-      <div class="card">
-        <h3>Weddings & receptions</h3>
-        <p>
-          Ceremony audio, cocktail hour vibes, and a reception that keeps guests on the dance floor. 
-          Smooth announcements and a polished, professional presence.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Clubs, bars & lounges</h3>
-        <p>
-          High–energy club sets, seamless mixing, and crowd–focused track selection to keep the room moving all night.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Private & corporate events</h3>
-        <p>
-          Birthdays, yacht parties, brand activations, and corporate functions with clean edits, clear sound, 
-          and the right vibe for your guests.
-        </p>
-      </div>
+    <div class="event">
+      <div>Mar 3 — Yacht Party</div>
+      <span>Hollywood Beach</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="highlights">
-    <h2>Why choose DJ ITRIM</h2>
-    <p class="section-intro">
-      Not just another playlist—this is a curated experience built around your crowd and your story.
-    </p>
-    <div class="highlights">
-      <div class="highlights-text">
-        <ul>
-          <li><strong>Fort Lauderdale–based:</strong> Knows the local venues, crowds, and coastal vibe.</li>
-          <li><strong>Crowd–reading skills:</strong> Adjusts in real time to keep the energy right where you want it.</li>
-          <li><strong>Clean, professional setup:</strong> No clutter, no drama—just great sound and lighting.</li>
-          <li><strong>Collaborative planning:</strong> Work together on must–play, do–not–play, and special moments.</li>
-          <li><strong>On–time and prepared:</strong> Early arrival, full backup plans, and reliable communication.</li>
-        </ul>
-      </div>
-      <div class="highlights-box">
-        <h3>Signature Fort Lauderdale sound</h3>
-        <p>
-          DJ ITRIM blends coastal chill with late–night energy—perfect for beachfront venues, rooftop parties, 
-          and downtown nightlife. Expect smooth transitions, creative mashups, and a sound that feels like 
-          Fort Lauderdale: warm, vibrant, and unforgettable.
-        </p>
-      </div>
+<!-- MUSIC -->
+<section id="music">
+  <h2>Mixes & Releases</h2>
+  <p class="section-intro">Latest sets, remixes, and exclusive drops</p>
+
+  <div class="music-grid">
+    <div class="music-item">
+      <img src="cover1.jpg" alt="Mix Cover">
+      <h3>Sunset Vibes Vol. 1</h3>
     </div>
-  </section>
-
-  <section id="testimonials">
-    <h2>Client reviews</h2>
-    <p class="section-intro">
-      Real feedback from events that turned into nights people still talk about.
-    </p>
-    <div class="testimonials">
-      <div class="testimonial">
-        “DJ ITRIM absolutely made our wedding. The dance floor was full from the first song to the last.”
-        <strong>— Sarah & Miguel, Fort Lauderdale beach wedding</strong>
-      </div>
-      <div class="testimonial">
-        “Perfect vibe for our rooftop event. Professional, easy to work with, and the music was on point all night.”
-        <strong>— Jason, corporate event planner</strong>
-      </div>
-      <div class="testimonial">
-        “Hands down the best Fort Lauderdale DJ we’ve booked. Our guests didn’t want the night to end.”
-        <strong>— Club manager, Las Olas area</strong>
-      </div>
+    <div class="music-item">
+      <img src="cover2.jpg" alt="Mix Cover">
+      <h3>Late Night Energy</h3>
     </div>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Book DJ ITRIM</h2>
-    <p class="section-intro">
-      Share your date, venue, and event details to check availability and get a custom quote.
-    </p>
-    <a href="mailto:booking@djitrim.com?subject=Booking%20Inquiry%20-%20DJ%20ITRIM" class="btn btn-primary">
-      Email for availability
-    </a>
-    <div class="contact-info">
-      <p><strong>Email:</strong> <a href="mailto:booking@djitrim.com">booking@djitrim.com</a></p>
-      <p><strong>Instagram:</strong> @djitrim</p>
-      <p><strong>Location:</strong> Fort Lauderdale, Florida</p>
+    <div class="music-item">
+      <img src="cover3.jpg" alt="Mix Cover">
+      <h3>Miami Afterhours</h3>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    &copy; <span id="year"></span> DJ ITRIM – Best Fort Lauderdale DJ. All rights reserved.
-  </footer>
+<!-- ABOUT -->
+<section id="about">
+  <h2>About DJ ITRIM</h2>
+  <p class="section-intro">
+    High‑energy sets, seamless transitions, and a signature South Florida sound.
+  </p>
+</section>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2>Booking</h2>
+  <p class="section-intro">For events, clubs, and private bookings</p>
+  <p><a href="mailto:booking@djitrim.com">booking@djitrim.com</a></p>
+</section>
+
+<footer>
+  © <span id="year"></span> DJ ITRIM — All Rights Reserved
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
+
+
+ 
