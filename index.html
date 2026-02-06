@@ -8,6 +8,9 @@
 <!-- Luxury Font -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
+<!-- Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 /* RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -156,6 +159,37 @@ header a:hover { color: #ffd700; transform: scale(1.1); }
   transform: scale(1.1);
 }
 
+/* SOCIAL ICONS */
+.social-icons {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 999;
+  opacity: 0;
+  animation: fadeSocial 1.8s ease forwards 1.5s;
+}
+
+@keyframes fadeSocial {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.social-icons .icon {
+  font-size: 1.4rem;
+  color: #ffd700;
+  transition: 0.3s ease;
+  text-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+
+.social-icons .icon:hover {
+  transform: scale(1.25) translateY(-3px);
+  color: #fff;
+  text-shadow: 0 0 20px #ffd700;
+}
+
 /* SECTIONS */
 section {
   padding: 120px 40px;
@@ -281,6 +315,16 @@ footer {
     <a href="#contact">Contact</a>
   </nav>
 </header>
+
+<!-- SOCIAL ICONS -->
+<div class="social-icons">
+  <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
+  <a href="#" class="icon"><i class="fab fa-tiktok"></i></a>
+  <a href="#" class="icon"><i class="fab fa-soundcloud"></i></a>
+  <a href="#" class="icon"><i class="fab fa-spotify"></i></a>
+</div>
 
 <section class="hero">
   <div class="hero-content">
