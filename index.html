@@ -249,6 +249,8 @@ section p.section-intro {
   width: 100%;
   height: 420px;
   margin-top: 40px;
+  perspective: 1000px;
+  overflow: visible;
 }
 
 .polaroid {
@@ -258,16 +260,21 @@ section p.section-intro {
   color: #000;
   border-radius: 6px;
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  transition: transform 0.6s ease, box-shadow 0.4s ease;
   cursor: pointer;
   opacity: 0;
   animation: polaroidFade 1.5s forwards;
+  transition: transform 1.2s cubic-bezier(.2,.9,.2,1), box-shadow 0.4s ease, z-index 0s;
+  user-select: none;
 }
 
 .polaroid img {
   width: 100%;
   border-radius: 4px;
+  display: block;
 }
 
 .polaroid span {
@@ -276,18 +283,21 @@ section p.section-intro {
   font-size: 0.9rem;
   font-weight: bold;
   font-family: 'Cinzel', serif;
+  color: #111;
+  text-align: center;
 }
 
 /* Hover lift */
 .polaroid:hover {
-  transform: scale(1.1) rotate(0deg) !important;
-  box-shadow: 0 12px 30px rgba(255,215,0,0.5);
+  transform: translateY(-8px) scale(1.08) rotate(0deg) !important;
+  box-shadow: 0 18px 40px rgba(255,215,0,0.35);
+  z-index: 9999 !important;
 }
 
 /* Fade-in animation */
 @keyframes polaroidFade {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(40px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* EVENTS */
@@ -364,6 +374,14 @@ footer {
   border-top: 1px solid #222;
   margin-top: 60px;
 }
+
+/* Responsive tweaks */
+@media (max-width: 800px) {
+  .polaroid-container { height: 360px; }
+  .polaroid { width: 170px; padding: 10px; }
+  .hero h1 { font-size: 2.6rem; }
+  .hero p { font-size: 1rem; }
+}
 </style>
 </head>
 
@@ -404,7 +422,7 @@ footer {
   <h2>Artist Gallery</h2>
   <div class="divider"></div>
 
-  <div class="polaroid-container">
+  <div class="polaroid-container" id="polaroidContainer">
     <div class="polaroid"><img src="artist1.jpg" alt="Artist Photo"><span>ITRIM Live</span></div>
     <div class="polaroid"><img src="artist2.jpg" alt="Artist Photo"><span>Studio Session</span></div>
     <div class="polaroid"><img src="artist3.jpg" alt="Artist Photo"><span>Miami Night</span></div>
@@ -494,10 +512,8 @@ window.addEventListener("resize", resizeCanvas);
 let t = 0;
 
 function animateAlienHeat() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Background haze
-  ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+  // subtle trail effect
+  ctx.fillStyle = "rgba(0, 0, 0, 0.12)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const centerX = canvas.width / 2;
@@ -505,12 +521,12 @@ function animateAlienHeat() {
 
   // Multi-layer alien waves
   for (let layer = 0; layer < 4; layer++) {
-    let radius = 180 + layer * 40;
+    let radius = Math.min(canvas.width, canvas.height) * 0.18 + layer * 40;
 
     ctx.beginPath();
     ctx.lineWidth = 1.8 + layer * 0.6;
-    ctx.strokeStyle = `rgba(255, 215, 0, ${0.35 + layer * 0.15})`;
-    ctx.shadowBlur = 25 + layer * 10;
+    ctx.strokeStyle = `rgba(255, 215, 0, ${0.28 + layer * 0.14})`;
+    ctx.shadowBlur = 20 + layer * 8;
     ctx.shadowColor = "#ffd700";
 
     for (let i = 0; i < 2000; i++) {
@@ -519,14 +535,14 @@ function animateAlienHeat() {
       let x =
         centerX +
         radius *
-          Math.sin(2 * u + t * 0.9) *
-          Math.cos(3 * u + t * 0.4 + layer);
+          Math.sin(2 * u + t * (0.9 + layer * 0.02)) *
+          Math.cos(3 * u + t * (0.4 + layer * 0.01) + layer);
 
       let y =
         centerY +
         radius *
-          Math.sin(4 * u + t * 0.6 + layer) *
-          Math.sin(2 * u + t * 0.3);
+          Math.sin(4 * u + t * (0.6 + layer * 0.015) + layer) *
+          Math.sin(2 * u + t * (0.3 + layer * 0.01));
 
       if (i === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
@@ -541,22 +557,81 @@ function animateAlienHeat() {
 
 animateAlienHeat();
 
-/* RANDOM POLAROID LAYOUT */
+/* RANDOM POLAROID LAYOUT + SHUFFLE */
 function scatterPolaroids() {
-  const photos = document.querySelectorAll(".polaroid");
-  photos.forEach((p, i) => {
-    const angle = (Math.random() * 40 - 20); // -20° to +20°
-    const x = Math.random() * 60 - 30;       // -30px to +30px
-    const y = Math.random() * 40 - 20;       // -20px to +20px
-    const delay = i * 0.2;
+  const container = document.getElementById('polaroidContainer');
+  const photos = container.querySelectorAll(".polaroid");
+  const rect = container.getBoundingClientRect();
+  const padding = 40; // keep inside edges
 
-    p.style.transform = `translate(${x}px, ${y}px) rotate(${angle}deg)`;
-    p.style.animationDelay = `${delay}s`;
+  photos.forEach((p, i) => {
+    // compute random positions relative to container center
+    const maxX = Math.max(0, rect.width / 2 - padding - p.offsetWidth / 2);
+    const maxY = Math.max(0, rect.height / 2 - padding - p.offsetHeight / 2);
+
+    const x = (Math.random() * 2 - 1) * maxX; // -maxX .. +maxX
+    const y = (Math.random() * 2 - 1) * maxY; // -maxY .. +maxY
+    const angle = Math.random() * 40 - 20;   // -20° to +20°
+    const delay = i * 0.08;
+
+    // small z-index variance so shuffled items overlap naturally
+    const z = Math.floor(Math.random() * 10) + 1;
+
+    p.style.transitionDelay = `${delay}s`;
+    p.style.zIndex = 100 + z;
+    p.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${angle}deg)`;
   });
 }
 
-scatterPolaroids();
+// initial scatter after images load (ensure sizes are known)
+window.addEventListener('load', () => {
+  // slight stagger to allow fade-in animation to feel organic
+  setTimeout(() => scatterPolaroids(), 200);
+});
+
+// Shuffle every 6 seconds with a gentle pause before reshuffle
+let shuffleInterval = setInterval(() => {
+  // add a tiny "lift" effect before reshuffle
+  const photos = document.querySelectorAll('.polaroid');
+  photos.forEach((p, i) => {
+    p.style.transition = 'transform 0.45s cubic-bezier(.2,.9,.2,1), box-shadow 0.25s ease';
+    p.style.transform += ' translateY(-6px)';
+  });
+
+  // after lift, scatter to new positions
+  setTimeout(() => {
+    // restore transition for smooth shuffle
+    photos.forEach(p => {
+      p.style.transition = 'transform 1.2s cubic-bezier(.2,.9,.2,1), box-shadow 0.4s ease';
+    });
+    scatterPolaroids();
+  }, 300);
+}, 6000);
+
+/* Optional: click to bring a polaroid to center */
+document.getElementById('polaroidContainer').addEventListener('click', (e) => {
+  const target = e.target.closest('.polaroid');
+  if (!target) return;
+
+  // bring clicked photo to front and center briefly
+  const photos = document.querySelectorAll('.polaroid');
+  photos.forEach(p => p.style.transition = 'transform 0.6s cubic-bezier(.2,.9,.2,1), box-shadow 0.4s ease');
+
+  target.style.zIndex = 9999;
+  target.style.transform = `translate(calc(-50% + 0px), calc(-50% + -10px)) rotate(0deg) scale(1.06)`;
+  target.style.boxShadow = '0 30px 60px rgba(255,215,0,0.35)';
+
+  setTimeout(() => {
+    // return to scattered layout
+    scatterPolaroids();
+  }, 1800);
+});
 </script>
 
 </body>
 </html>
+
+
+
+
+
