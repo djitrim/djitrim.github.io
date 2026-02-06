@@ -89,44 +89,99 @@ header a:hover { color: #ffd700; transform: scale(1.1); }
   100% { text-shadow: 0 0 10px rgba(255,215,0,0.4); }
 }
 
-/* HERO */
-.hero {
+/* VIDEO-LIKE ANIMATED HERO */
+.animated-hero {
   height: 100vh;
   width: 100%;
-  background: url('your-hero-image.jpg') center/cover no-repeat fixed;
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
-  position: relative;
-  animation: fadeHero 2s ease forwards;
-}
-@keyframes fadeHero {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
-.hero::after {
-  content: "";
+/* Animated gradient background */
+.hero-animation-layer {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.45);
+  background: linear-gradient(120deg, #000, #111, #000);
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+  z-index: 1;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  animation: slideUp 1.5s ease forwards;
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(60px); }
+
+/* Light sweep */
+.hero-animation-layer::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -200%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,215,0,0.15) 50%,
+    transparent 100%
+  );
+  animation: lightSweep 6s infinite;
+}
+
+@keyframes lightSweep {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(200%); }
+}
+
+/* Floating particles */
+.hero-particles {
+  position: absolute;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.hero-particles::before,
+.hero-particles::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,215,0,0.25) 2px, transparent 3px);
+  background-size: 40px 40px;
+  animation: particleFloat 18s linear infinite;
+  opacity: 0.25;
+}
+
+.hero-particles::after {
+  animation-duration: 28s;
+  opacity: 0.15;
+}
+
+@keyframes particleFloat {
+  0% { transform: translate(-10%, -10%) rotate(0deg); }
+  100% { transform: translate(10%, 10%) rotate(360deg); }
+}
+
+/* Hero content */
+.animated-hero .hero-content {
+  position: relative;
+  z-index: 5;
+  animation: fadeInHero 2s ease forwards;
+}
+
+@keyframes fadeInHero {
+  from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.hero h1 {
+.hero-content h1 {
   font-family: 'Cinzel', serif;
   font-size: 4rem;
   letter-spacing: 6px;
@@ -135,7 +190,7 @@ header a:hover { color: #ffd700; transform: scale(1.1); }
   color: #fff;
 }
 
-.hero p {
+.hero-content p {
   font-size: 1.2rem;
   color: #ddd;
   margin-bottom: 30px;
@@ -214,7 +269,7 @@ section p.section-intro {
   font-size: 1.1rem;
 }
 
-/* ANIMATED DIVIDER */
+/* DIVIDER */
 .divider {
   width: 120px;
   height: 4px;
@@ -326,7 +381,11 @@ footer {
   <a href="#" class="icon"><i class="fab fa-spotify"></i></a>
 </div>
 
-<section class="hero">
+<!-- VIDEO-LIKE HERO -->
+<section class="hero animated-hero">
+  <div class="hero-animation-layer"></div>
+  <div class="hero-particles"></div>
+
   <div class="hero-content">
     <h1 class="glow-pulse">ITRIM</h1>
     <p>Fort Lauderdale’s Premier DJ — Clubs, Festivals, Private Events</p>
